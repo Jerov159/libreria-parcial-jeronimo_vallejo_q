@@ -2,6 +2,8 @@
 
 
 class Producto:
+    DESCUENTO_MAXIMO = 40.0
+
     def __init__(self, nombre: str, precio_base: float) -> None:
         if precio_base <= 0:
             raise ValueError("El precio base debe ser mayor que cero")
@@ -11,7 +13,7 @@ class Producto:
         self.descuento_porcentaje = 0.0
 
     def aplicar_descuento(self, porcentaje: float) -> None:
-        if porcentaje < 0 or porcentaje > 40:
+        if porcentaje < 0 or porcentaje > self.DESCUENTO_MAXIMO:
             raise ValueError("El descuento debe estar entre 0% y 40%")
 
         self.descuento_porcentaje = porcentaje
