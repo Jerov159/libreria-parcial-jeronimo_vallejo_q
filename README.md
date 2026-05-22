@@ -65,3 +65,32 @@ python -m pytest --cov=libreria --cov-report=term-missing
 | CP-06 | 2 | Aceptar descuento en limite superior | Producto creado | descuento=40 | Llamar aplicar_descuento(40) | Descuento aceptado | Borde |
 | CP-07 | 2 | Rechazar descuento mayor al 40% | Producto creado | descuento=41 | Llamar aplicar_descuento(41) | ValueError con mensaje claro | Negativo |
 | CP-08 | 3 | Calcular precio final con descuento e IVA | Producto precio 10000, descuento 10% | descuento=10 | Llamar calcular_precio_final() | 10000 * 0.90 * 1.19 = 10710.0 | Positivo |
+## Reporte de cobertura
+
+Ejecutar:
+
+```bash
+python -m pytest --cov=libreria --cov-report=term-missing
+```
+
+Resultado obtenido:
+
+```
+============================= test session starts =============================
+platform win32 -- Python 3.14.4, pytest-9.0.3, pluggy-1.6.0
+collected 18 items
+
+tests/test_regla1_producto.py ...... PASSED
+tests/test_regla2_descuento.py ...... PASSED
+tests/test_regla3_precio_final.py ... PASSED
+features/test_precio_producto.py ....... PASSED
+
+=============================== tests coverage ================================
+Name                       Stmts   Miss  Cover   Missing
+--------------------------------------------------------
+src\libreria\__init__.py       2      0   100%
+src\libreria\producto.py      17      0   100%
+--------------------------------------------------------
+TOTAL                         19      0   100%
+======================= 18 passed in 0.11s =======================
+```
