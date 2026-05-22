@@ -53,3 +53,15 @@ python -m pytest --cov=libreria --cov-report=term-missing
 **Pregunta al administrador:** Si el descuento deja el subtotal en cero, el IVA del 19% debe calcularse sobre cero o existe un precio minimo de venta?
 
 **Justificacion:** Define si el precio final puede ser exactamente cero o si hay una regla comercial adicional que afecta los casos de prueba en el borde.
+## Casos de prueba
+
+| ID | Regla | Descripcion | Precondicion | Datos de entrada | Pasos | Resultado esperado | Tipo |
+|----|-------|-------------|--------------|------------------|-------|-------------------|------|
+| CP-01 | 1 | Crear producto con precio valido | Ninguna | nombre="Novela", precio_base=25000 | Instanciar Producto | Objeto creado con precio 25000 | Positivo |
+| CP-02 | 1 | Rechazar precio base cero | Ninguna | precio_base=0 | Instanciar Producto | ValueError con mensaje claro | Negativo |
+| CP-03 | 1 | Rechazar precio base negativo | Ninguna | precio_base=-500 | Instanciar Producto | ValueError con mensaje claro | Negativo |
+| CP-04 | 2 | Aplicar descuento valido intermedio | Producto con precio 10000 | descuento=20 | Llamar aplicar_descuento(20) | Descuento registrado en 20% | Positivo |
+| CP-05 | 2 | Aceptar descuento en limite inferior | Producto creado | descuento=0 | Llamar aplicar_descuento(0) | Descuento aceptado | Borde |
+| CP-06 | 2 | Aceptar descuento en limite superior | Producto creado | descuento=40 | Llamar aplicar_descuento(40) | Descuento aceptado | Borde |
+| CP-07 | 2 | Rechazar descuento mayor al 40% | Producto creado | descuento=41 | Llamar aplicar_descuento(41) | ValueError con mensaje claro | Negativo |
+| CP-08 | 3 | Calcular precio final con descuento e IVA | Producto precio 10000, descuento 10% | descuento=10 | Llamar calcular_precio_final() | 10000 * 0.90 * 1.19 = 10710.0 | Positivo |
