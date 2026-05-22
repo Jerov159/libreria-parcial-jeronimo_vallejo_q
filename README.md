@@ -74,23 +74,4 @@ python -m pytest --cov=libreria --cov-report=term-missing
 ```
 
 Resultado obtenido:
-
-```
-============================= test session starts =============================
-platform win32 -- Python 3.14.4, pytest-9.0.3, pluggy-1.6.0
-collected 18 items
-
-tests/test_regla1_producto.py ...... PASSED
-tests/test_regla2_descuento.py ...... PASSED
-tests/test_regla3_precio_final.py ... PASSED
-features/test_precio_producto.py ....... PASSED
-
-=============================== tests coverage ================================
-Name                       Stmts   Miss  Cover   Missing
---------------------------------------------------------
-src\libreria\__init__.py       2      0   100%
-src\libreria\producto.py      17      0   100%
---------------------------------------------------------
-TOTAL                         19      0   100%
-======================= 18 passed in 0.11s =======================
-```
+Se pueden ver en las evidencias tomadas en el pdf
